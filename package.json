@@ -1,0 +1,9 @@
+{
+  "name": "supernova",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@netlify/functions": "^6.0.3",
+    "openai": "^7.43.0"
+  }
+}

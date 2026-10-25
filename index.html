@@ -3,121 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Games</title> <!-- change this to the title of the tab you want -->
+    <title>Supernova</title> <!-- change this to the title of the tab you want -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #6a4c9c;
-            color: white;
-        }
-        header {
-            background-color: #5e3b8f;
-            color: white;
-            padding: 20px 30px;
-            display: flex;
-            justify-content: flex-end;
-        }
-        header button {
-            background-color: #7f5f9f;
-            border: none;
-            padding: 10px 20px;
-            color: white;
-            font-size: 18px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-left: 20px;
-        }
-        header button:hover {
-            background-color: #9b6fcf;
-        }
-        .section {
-            padding: 40px;
-            text-align: center;
-            background-color: #7f5f9f;
-        }
-        .game-card {
-            display: inline-block;
-            width: 200px;
-            height: 250px;
-            background-color: #8e6ba7;
-            margin: 15px;
-            border-radius: 10px;
-            cursor: pointer;
-            color: white;
-            text-align: center;
-        }
-        .game-card img {
-            width: 100%;
-            height: 160px;
-            border-radius: 10px 10px 0 0;
-        }
-        .game-card h3 {
-            margin-top: 10px;
-        }
-        footer {
-            background-color: #5e3b8f;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-        }
-        iframe.fullscreen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-            z-index: 1000;
-        }
-    </style>
-    <script>
-        function openFullscreen(url) {
-            const iframe = document.createElement('iframe');
-            iframe.src = url;
-            iframe.className = 'fullscreen';
-            iframe.setAttribute('allowfullscreen', '');
-            document.body.appendChild(iframe);
-
-            iframe.onclick = () => {
-                iframe.remove(); // closes the iframe once you click (remove this if not wanted)
-            };
-        }
-    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <button onclick="location.href='index.html'">Games</button>
-        <button onclick="location.href='apps.html'">Apps</button>
+    <div class="stars" aria-hidden="true"></div>
+
+    <header class="topbar">
+        <a href="#home" class="brand"><span class="brand-orb"></span>SUPERNOVA</a>
+        <nav>
+            <a href="#games" data-tab="games">Games</a>
+            <a href="#cloud" data-tab="cloud">Cloud Gaming</a>
+            <a href="#chat" data-tab="chat">AI Chat</a>
+            <a href="#apps" data-tab="apps">Apps</a>
+        </nav>
     </header>
-    <div class="section">
-        <h2>Games</h2> <!-- change this to what you want above ur games -->
-        <div class="game-card" onclick="openFullscreen('https://krunker.io/')"> 
-            <img src="https://via.placeholder.com/200x160" alt="Krunker.io">
-            <h3>Krunker.io</h3>
+
+    <main>
+        <!-- HOME -->
+        <section id="home" class="panel">
+            <div class="hero">
+                <p class="eyebrow">Your launchpad</p>
+                <h1>Play. Stream.<br><span class="glow">Ask anything.</span></h1>
+                <p class="lede">Games that run right here, Xbox Cloud Gaming one click away, and a built-in AI assistant.</p>
+                <div class="hero-actions">
+                    <a class="btn primary" href="#games">Play games</a>
+                    <a class="btn" href="#chat">Open AI chat</a>
+                </div>
+            </div>
+            <div class="quick-grid">
+                <a class="quick" href="#games"><span class="q-icon">🎮</span><b>Games</b><small>Snake, 2048, Breakout & more</small></a>
+                <a class="quick xbox" href="#cloud"><span class="q-icon">☁️</span><b>Xbox Cloud Gaming</b><small>Stream console games</small></a>
+                <a class="quick" href="#chat"><span class="q-icon">✨</span><b>AI Chat</b><small>Built in, no login needed</small></a>
+            </div>
+        </section>
+
+        <!-- GAMES -->
+        <section id="games" class="panel">
+            <h2>Games</h2> <!-- change this to what you want above ur games -->
+            <p class="sub">Built-in games load instantly on this site. Web games open in a new tab.</p>
+
+            <h3 class="group">Play here</h3>
+            <div class="card-grid">
+                <button class="card" onclick="openGame('games/snake.html', 'Snake')">
+                    <div class="art" style="--c1:#22c55e;--c2:#065f46">🐍</div>
+                    <h4>Snake</h4><small>Arrow keys / WASD</small>
+                </button>
+                <button class="card" onclick="openGame('games/2048.html', '2048')">
+                    <div class="art" style="--c1:#f59e0b;--c2:#9a3412">2048</div>
+                    <h4>2048</h4><small>Arrow keys / swipe</small>
+                </button>
+                <button class="card" onclick="openGame('games/breakout.html', 'Breakout')">
+                    <div class="art" style="--c1:#ec4899;--c2:#6d28d9">🧱</div>
+                    <h4>Breakout</h4><small>Mouse / arrow keys</small>
+                </button>
+                <!-- copy one of these to add a game that lives in the /games folder -->
+            </div>
+
+            <h3 class="group">Web games <span class="tag">new tab</span></h3>
+            <div class="card-grid">
+                <a class="card" href="https://krunker.io/" target="_blank" rel="noopener">
+                    <div class="art" style="--c1:#f97316;--c2:#7c2d12">🎯</div><h4>Krunker.io</h4><small>FPS</small>
+                </a>
+                <a class="card" href="https://agar.io/" target="_blank" rel="noopener">
+                    <div class="art" style="--c1:#06b6d4;--c2:#1e3a8a">🟢</div><h4>Agar.io</h4><small>Multiplayer</small>
+                </a>
+                <a class="card" href="https://slither.io/" target="_blank" rel="noopener">
+                    <div class="art" style="--c1:#a3e635;--c2:#3f6212">🪱</div><h4>Slither.io</h4><small>Multiplayer</small>
+                </a>
+                <a class="card" href="https://shellshock.io/" target="_blank" rel="noopener">
+                    <div class="art" style="--c1:#fde047;--c2:#a16207">🥚</div><h4>Shell Shockers</h4><small>FPS</small>
+                </a>
+                <a class="card" href="https://diep.io/" target="_blank" rel="noopener">
+                    <div class="art" style="--c1:#60a5fa;--c2:#312e81">🔷</div><h4>Diep.io</h4><small>Multiplayer</small>
+                </a>
+                <!-- copy one of these to add a new web game; change the link, emoji, and name -->
+            </div>
+        </section>
+
+        <!-- CLOUD GAMING -->
+        <section id="cloud" class="panel">
+            <h2>Xbox Cloud Gaming</h2>
+            <div class="xbox-hero">
+                <div>
+                    <p class="lede">Stream hundreds of Xbox games in your browser — no console needed. Sign in with your Microsoft account (Game Pass Ultimate required) and plug in a controller or use touch.</p>
+                    <div class="hero-actions">
+                        <a class="btn xbox-btn" href="https://www.xbox.com/play" target="_blank" rel="noopener">Launch Xbox Cloud Gaming ↗</a>
+                        <a class="btn" href="https://www.xbox.com/xbox-game-pass" target="_blank" rel="noopener">About Game Pass</a>
+                    </div>
+                    <p class="note">Xbox opens in a new tab because Microsoft doesn't allow it to be embedded inside other websites.</p>
+                </div>
+                <div class="xbox-logo" aria-hidden="true">
+                    <svg viewBox="0 0 88 88"><circle cx="44" cy="44" r="40" fill="none" stroke="currentColor" stroke-width="6"/><path d="M20 22c10 4 18 12 24 22 6-10 14-18 24-22M18 66c8-14 16-22 26-22s18 8 26 22" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/></svg>
+                </div>
+            </div>
+            <h3 class="group">Quick links</h3>
+            <div class="card-grid">
+                <a class="card" href="https://www.xbox.com/play/gallery/all-games" target="_blank" rel="noopener"><div class="art" style="--c1:#16a34a;--c2:#052e16">📚</div><h4>All games</h4><small>Browse the library</small></a>
+                <a class="card" href="https://www.xbox.com/play/gallery/touch" target="_blank" rel="noopener"><div class="art" style="--c1:#16a34a;--c2:#052e16">👆</div><h4>Touch games</h4><small>No controller needed</small></a>
+                <a class="card" href="https://www.xbox.com/play/gallery/free-to-play" target="_blank" rel="noopener"><div class="art" style="--c1:#16a34a;--c2:#052e16">🆓</div><h4>Free to play</h4><small>Fortnite & more</small></a>
+            </div>
+        </section>
+
+        <!-- AI CHAT -->
+        <section id="chat" class="panel">
+            <div class="chat-head">
+                <div>
+                    <h2>Nova AI Chat</h2>
+                    <p class="sub">A ChatGPT-style assistant built into this site. Powered by an OpenAI GPT model.</p>
+                </div>
+                <div class="chat-actions">
+                    <button class="btn small" id="new-chat">New chat</button>
+                    <a class="btn small" href="https://chatgpt.com/" target="_blank" rel="noopener">Open ChatGPT ↗</a>
+                </div>
+            </div>
+            <div class="chat-box">
+                <div id="messages" class="messages">
+                    <div class="empty" id="chat-empty">
+                        <div class="empty-orb"></div>
+                        <p>Ask me anything — homework help, game tips, code, ideas.</p>
+                        <div class="suggestions">
+                            <button>Give me tips for getting better at Krunker</button>
+                            <button>Explain photosynthesis simply</button>
+                            <button>Write a short poem about space</button>
+                        </div>
+                    </div>
+                </div>
+                <form id="chat-form" class="composer">
+                    <textarea id="chat-input" rows="1" placeholder="Message Nova…" maxlength="4000" required></textarea>
+                    <button type="submit" class="send" id="send-btn" aria-label="Send">➤</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- APPS -->
+        <section id="apps" class="panel">
+            <h2>Apps</h2>
+            <p class="sub">These open in a new tab.</p>
+            <div class="card-grid">
+                <a class="card" href="https://chatgpt.com/" target="_blank" rel="noopener"><div class="art" style="--c1:#10b981;--c2:#064e3b">🤖</div><h4>ChatGPT</h4><small>chatgpt.com</small></a>
+                <a class="card" href="https://www.youtube.com/" target="_blank" rel="noopener"><div class="art" style="--c1:#ef4444;--c2:#7f1d1d">▶️</div><h4>YouTube</h4><small>Videos</small></a>
+                <a class="card" href="https://discord.com/app" target="_blank" rel="noopener"><div class="art" style="--c1:#818cf8;--c2:#312e81">💬</div><h4>Discord</h4><small>Chat</small></a>
+                <a class="card" href="https://web.whatsapp.com/" target="_blank" rel="noopener"><div class="art" style="--c1:#4ade80;--c2:#14532d">📱</div><h4>WhatsApp Web</h4><small>Messages</small></a>
+                <a class="card" href="https://drive.google.com/" target="_blank" rel="noopener"><div class="art" style="--c1:#facc15;--c2:#1e40af">📁</div><h4>Google Drive</h4><small>Files</small></a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Game player overlay -->
+    <div id="player" class="player" hidden>
+        <div class="player-bar">
+            <span id="player-title"></span>
+            <div>
+                <button class="btn small" id="player-fs">Fullscreen</button>
+                <button class="btn small" id="player-close">✕ Close</button>
+            </div>
         </div>
-        <div class="game-card" onclick="openFullscreen('https://agar.io/')">
-            <img src="https://via.placeholder.com/200x160" alt="Agar.io">
-            <h3>Agar.io</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://slither.io/')">
-            <img src="https://via.placeholder.com/200x160" alt="Slither.io">
-            <h3>Slither.io</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://shellshock.io/')">
-            <img src="https://via.placeholder.com/200x160" alt="Shell Shockers">
-            <h3>Shell Shockers</h3>
-        </div>
-        <div class="game-card" onclick="openFullscreen('https://diep.io/')">
-            <img src="https://via.placeholder.com/200x160" alt="Diep.io">
-            <h3>Diep.io</h3>
-            <!-- copy one of these to add new games, change link to wanted game, and img to a links favicon (icon on the tab) the alt will just show the text if img doesnt work (change the text to work as well) -->
-        </div>
+        <iframe id="player-frame" title="Game" allowfullscreen></iframe>
     </div>
+
     <footer>
-        <p>&copy; 2024 insert website name here</p> 
+        <p>&copy; 2026 Supernova</p>
     </footer>
-</body> 
+
+    <script src="app.js"></script>
+</body>
 </html>
